@@ -22,27 +22,112 @@ header() {
 }
 
 pause() {
-  read -rp "\n按回车返回菜单..."
+  read -rp "按回车返回菜单..."
 }
 
 # ========== 模块函数 ==========
 show_info() {
-  echo -e "${BLUE}系统信息概览：${RESET}"
-  echo "-----------------------------"
-  echo "主机名       : $(hostname)"
-  echo "当前用户     : $(whoami)"
-  echo "操作系统     : $(uname -o)"
-  echo "系统架构     : $(uname -m)"
-  echo "内核版本     : $(uname -r)"
-  echo "CPU 型号     : $(awk -F: '/model name/ {print $2; exit}' /proc/cpuinfo | sed 's/^ *//')"
-  echo "CPU 核心数   : $(nproc)"
-  echo "内存总量     : $(free -h | awk '/Mem/ {print $2}')"
-  echo "硬盘总量     : $(df -h / | awk 'NR==2 {print $2}')"
-  echo "系统运行时间 : $(uptime -p)"
-  echo "当前时间     : $(date)"
-  echo "IPv4 地址    : $(hostname -I | awk '{print $1}')"
-  echo "-----------------------------"
+  echo "系统信息详情"
+  echo "------------------------"
+
+  # 主机名
+  echo "主机名: $(hostname)"
+
+  # 运营商（通过IP查询在线接口）
+  ISP=$(curl -s https://ipinfo.io/org | sed 's/^[0-9]* //')
+  echo "运营商: ${ISP:-获取失败}"
+
+  echo "------------------------"
+
+  # 系统版本和内核
+  SYS_VER=$(lsb_release -ds 2>/dev/null || cat /etc/os-release | grep PRETTY_NAME | cut -d= -f2 | tr -d '"')
+  KERNEL_VER=$(uname -r)
+  echo "系统版本: $SYS_VER"
+  echo "Linux版本: $KERNEL_VER"
+
+  echo "------------------------"
+
+  # CPU架构型号及核心数
+  CPU_ARCH=$(uname -m)
+  CPU_MODEL=$(awk -F: '/model name/ {print $2; exit}' /proc/cpuinfo | sed 's/^ *//')
+  CPU_CORES=$(nproc)
+  echo "CPU架构: $CPU_ARCH"
+  echo "CPU型号: $CPU_MODEL"
+  echo "CPU核心数: $CPU_CORES"
+
+  echo "------------------------"
+
+  # CPU占用（1分钟平均负载 * 100 / 核心数，简易估算）
+  CPU_LOAD=$(uptime | awk -F'load average:' '{print $2}' | cut -d, -f1 | sed 's/ //g')
+  CPU_PERCENT=$(awk -v load=$CPU_LOAD -v cores=$CPU_CORES 'BEGIN {printf "%.2f", (load/cores)*100}')
+  echo "CPU占用: ${CPU_PERCENT}%"
+
+  # 内存占用
+  MEM_TOTAL=$(free -m | awk '/Mem:/ {print $2}')
+  MEM_USED=$(free -m | awk '/Mem:/ {print $3}')
+  MEM_PERCENT=$(awk -v used=$MEM_USED -v total=$MEM_TOTAL 'BEGIN {printf "%.2f", (used/total)*100}')
+  echo "物理内存: ${MEM_USED}MB/${MEM_TOTAL}MB (${MEM_PERCENT}%)"
+
+  # 虚拟内存（Swap）
+  SWAP_TOTAL=$(free -m | awk '/Swap:/ {print $2}')
+  SWAP_USED=$(free -m | awk '/Swap:/ {print $3}')
+  echo "虚拟内存: ${SWAP_USED}MB/${SWAP_TOTAL}MB (0%)"
+
+  # 硬盘占用（根分区）
+  DISK_TOTAL=$(df -BG / | awk 'NR==2 {print $2}')
+  DISK_USED=$(df -BG / | awk 'NR==2 {print $3}')
+  DISK_PERCENT=$(df -h / | awk 'NR==2 {print $5}')
+  echo "硬盘占用: ${DISK_USED}/${DISK_TOTAL} (${DISK_PERCENT})"
+
+  echo "------------------------"
+
+  # 网络流量统计（需要安装vnstat，示例为当天和累计流量）
+  if command -v vnstat &>/dev/null; then
+    RX_TODAY=$(vnstat --oneline | cut -d';' -f11)
+    TX_TODAY=$(vnstat --oneline | cut -d';' -f12)
+    RX_TOTAL=$(vnstat --oneline | cut -d';' -f3)
+    TX_TOTAL=$(vnstat --oneline | cut -d';' -f4)
+    echo "总接收: $RX_TOTAL"
+    echo "总发送: $TX_TOTAL"
+  else
+    echo "总接收: 未安装vnstat，无法获取"
+    echo "总发送: 未安装vnstat，无法获取"
+  fi
+
+  echo "------------------------"
+
+  # 网络拥堵算法 (查看BBR或其它TCP拥堵控制)
+  if sysctl net.ipv4.tcp_congestion_control &>/dev/null; then
+    TCP_CC=$(sysctl net.ipv4.tcp_congestion_control | awk '{print $3}')
+  else
+    TCP_CC="未知"
+  fi
+  echo "网络拥堵算法: $TCP_CC"
+
+  echo "------------------------"
+
+  # 公网IP
+  IPV4=$(curl -s4 https://ipinfo.io/ip)
+  IPV6=$(curl -s6 https://ipinfo.io/ip)
+  echo "公网IPv4地址: $IPV4"
+  echo "公网IPv6地址: ${IPV6:-无}"
+
+  echo "------------------------"
+
+  # 地理位置
+  LOC=$(curl -s https://ipinfo.io/city),$(curl -s https://ipinfo.io/country)
+  echo "地理位置: ${LOC:-未知}"
+
+  # 系统时间
+  echo "系统时间: $(date '+%Y-%m-%d %I:%M %p')"
+
+  echo "------------------------"
+
+  # 系统运行时长
+  UPTIME_DAYS=$(uptime -p | sed 's/up //')
+  echo "系统运行时长: $UPTIME_DAYS"
 }
+
 
 system_update() {
   echo -e "${BLUE}正在执行系统更新...${RESET}"
