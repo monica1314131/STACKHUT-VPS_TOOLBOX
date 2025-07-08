@@ -149,6 +149,56 @@ clean_system() {
   echo "✅ 清理完成"
 }
 
+components_menu() {
+  while true; do
+    clear
+    echo -e "${GREEN}====== 组件管理（常用工具一键安装） ======${RESET}"
+    echo "1) 安装 curl"
+    echo "2) 安装 wget"
+    echo "3) 安装 sudo"
+    echo "4) 安装 socat"
+    echo "5) 安装 htop"
+    echo "6) 安装 iftop"
+    echo "7) 安装 unzip"
+    echo "8) 安装 tar"
+    echo "0) 返回主菜单"
+    echo "------------------------------------------"
+    read -rp "请选择要安装的工具: " tool_choice
+
+    case $tool_choice in
+      1) install_package curl ;;
+      2) install_package wget ;;
+      3) install_package sudo ;;
+      4) install_package socat ;;
+      5) install_package htop ;;
+      6) install_package iftop ;;
+      7) install_package unzip ;;
+      8) install_package tar ;;
+      0) break ;;
+      *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}";;
+    esac
+    read -rp "按回车继续..."
+  done
+}
+
+
+install_package() {
+  local package=$1
+  echo -e "${COLOR}正在安装 ${package}...${RESET}"
+  if command -v apt &>/dev/null; then
+    apt update && apt install -y "$package"
+  elif command -v yum &>/dev/null; then
+    yum install -y "$package"
+  elif command -v dnf &>/dev/null; then
+    dnf install -y "$package"
+  elif command -v apk &>/dev/null; then
+    apk add "$package"
+  else
+    echo -e "${RED}❌ 无法识别系统包管理器${RESET}"
+  fi
+}
+
+
 placeholder() {
   echo -e "${YELLOW}此功能暂未实现，敬请期待...${RESET}"
 }
