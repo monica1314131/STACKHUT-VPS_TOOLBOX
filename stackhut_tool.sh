@@ -182,7 +182,8 @@ while true; do
     1) show_info; pause;;
     2) system_update; pause;;
     3) clean_system; pause;;
-    4|5|6|7|8|9|10|11) placeholder; pause;;
+    4) components_menu;;
+    5|6|7|8|9|10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
