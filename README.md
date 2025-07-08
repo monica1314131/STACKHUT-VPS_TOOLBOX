@@ -13,14 +13,12 @@
 ## 🛠 使用方法
 
 ```bash
-curl -N https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX/raw/main/stackhut_tool.sh && chmod +x stackhut_tool.sh && ./stackhut_tool.sh
-```
-```bash
 wget -N https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX/raw/main/stackhut_tool.sh && chmod +x stackhut_tool.sh && ./stackhut_tool.sh
 ```
 
 
 💡 项目说明
+
 作者：@StackHut
 
 项目地址：https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX

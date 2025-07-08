@@ -153,14 +153,14 @@ components_menu() {
   while true; do
     clear
     echo -e "${GREEN}====== 组件管理（常用工具一键安装） ======${RESET}"
-    echo "1) 安装 curl"
-    echo "2) 安装 wget"
-    echo "3) 安装 sudo"
-    echo "4) 安装 socat"
-    echo "5) 安装 htop"
-    echo "6) 安装 iftop"
-    echo "7) 安装 unzip"
-    echo "8) 安装 tar"
+    echo "1) 安装 curl 下载工具"
+    echo "2) 安装 wget 下载工具"
+    echo "3) 安装 sudo 超级管理"
+    echo "4) 安装 socat 通信连接"
+    echo "5) 安装 htop 系统监控"
+    echo "6) 安装 iftop 网络流量监控"
+    echo "7) 安装 unzip ZIP压缩解压工具"
+    echo "8) 安装 tar GZ压缩解压工具"
     echo "0) 返回主菜单"
     echo "------------------------------------------"
     read -rp "请选择要安装的工具: " tool_choice
