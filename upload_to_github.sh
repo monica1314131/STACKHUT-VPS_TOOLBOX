@@ -22,3 +22,4 @@ if [ $? -eq 0 ]; then
 else
   echo "❌ 上传失败，请检查错误信息"
 fi
+exec ./stackhut_tool.sh
