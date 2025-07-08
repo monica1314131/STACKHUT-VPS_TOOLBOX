@@ -82,17 +82,20 @@ show_info() {
   echo "------------------------"
 
   # 网络流量统计（需要安装vnstat，示例为当天和累计流量）
-  if command -v vnstat &>/dev/null; then
-    RX_TODAY=$(vnstat --oneline | cut -d';' -f11)
-    TX_TODAY=$(vnstat --oneline | cut -d';' -f12)
-    RX_TOTAL=$(vnstat --oneline | cut -d';' -f3)
-    TX_TOTAL=$(vnstat --oneline | cut -d';' -f4)
-    echo "总接收: $RX_TOTAL"
-    echo "总发送: $TX_TOTAL"
-  else
-    echo "总接收: 未安装vnstat，无法获取"
-    echo "总发送: 未安装vnstat，无法获取"
-  fi
+iface=$(ip -o link show | awk -F': ' '{print $2}' | grep -v lo | head -1)
+
+if [[ -n "$iface" ]]; then
+  rx_bytes=$(cat /sys/class/net/$iface/statistics/rx_bytes)
+  tx_bytes=$(cat /sys/class/net/$iface/statistics/tx_bytes)
+  rx_gb=$(echo "scale=2; $rx_bytes/1024/1024/1024" | bc)
+  tx_gb=$(echo "scale=2; $tx_bytes/1024/1024/1024" | bc)
+  echo "总接收: ${rx_gb} GB"
+  echo "总发送: ${tx_gb} GB"
+else
+  echo "总接收: 获取失败"
+  echo "总发送: 获取失败"
+fi
+
 
   echo "------------------------"
 
@@ -315,7 +318,64 @@ bbr_menu() {
     read -rp "按回车继续..."
   done
 }
-  
+  docker_menu() {
+  while true; do
+    clear
+    echo -e "${GREEN}====== Docker 管理 ======${RESET}"
+    echo "1) 安装 Docker"
+    echo "2) 卸载 Docker"
+    echo "3) 查看 Docker 状态"
+    echo "4) 启动 Docker"
+    echo "5) 停止 Docker"
+    echo "6) 重启 Docker"
+    echo "7) 清理无用容器和镜像"
+    echo "0) 返回主菜单"
+    echo "---------------------------"
+    read -rp "请选择操作: " docker_choice
+
+    case $docker_choice in
+      1)
+        echo -e "${BLUE}正在安装 Docker...${RESET}"
+        curl -fsSL https://get.docker.com | bash
+        systemctl enable docker
+        systemctl start docker
+        ;;
+      2)
+        echo -e "${YELLOW}卸载 Docker...${RESET}"
+        systemctl stop docker
+        apt remove -y docker docker-engine docker.io containerd runc
+        ;;
+      3)
+        echo -e "${BLUE}Docker 状态:${RESET}"
+        systemctl status docker
+        ;;
+      4)
+        echo -e "${BLUE}启动 Docker...${RESET}"
+        systemctl start docker
+        ;;
+      5)
+        echo -e "${YELLOW}停止 Docker...${RESET}"
+        systemctl stop docker
+        ;;
+      6)
+        echo -e "${BLUE}重启 Docker...${RESET}"
+        systemctl restart docker
+        ;;
+      7)
+        echo -e "${YELLOW}清理无用容器/镜像...${RESET}"
+        docker system prune -af
+        ;;
+      0)
+        break
+        ;;
+      *)
+        echo -e "${RED}❌ 无效选项，请重新输入${RESET}"
+        ;;
+    esac
+    read -rp "按回车继续..."
+  done
+}
+
 
   case $choice in
     1) show_info; pause;;
@@ -323,7 +383,8 @@ bbr_menu() {
     3) clean_system; pause;;
     4) components_menu;;
     5) bbr_menu;;
-    6|7|8|9|10|11) placeholder; pause;;
+    6) docker_menu ;;
+    7|8|9|10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
