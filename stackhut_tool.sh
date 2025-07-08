@@ -228,12 +228,102 @@ while true; do
   echo "----------------------------------"
   read -rp "请输入你的选择: " choice
 
+bbr_menu() {
+  while true; do
+    clear
+    echo -e "${GREEN}========= BBR 拥塞控制管理 =========${RESET}"
+    echo " 1) 查看当前 BBR 状态"
+    echo " 2) 启用 BBR（原版）"
+    echo " 3) 启用 BBR Plus"
+    echo " 4) 启用 BBR2"
+    echo " 5) 启用 Cubic"
+    echo " 6) 启用 Reno"
+    echo " 7) 启用 Cake"
+    echo " 8) 查看可用算法列表"
+    echo " 9) 重启网络栈（可选）"
+    echo " 0) 返回主菜单"
+    echo "------------------------------------"
+    read -rp "请输入选项: " bbr_choice
+
+    case $bbr_choice in
+      1)
+        echo -e "${YELLOW}当前拥塞控制算法:${RESET} $(sysctl net.ipv4.tcp_congestion_control)"
+        echo -e "${YELLOW}当前默认队列算法: ${RESET} $(sysctl net.core.default_qdisc)"
+        echo -e "${YELLOW}当前内核版本:      ${RESET} $(uname -r)"
+        ;;
+      2)
+        echo -e "${BLUE}正在启用 BBR（原版）...${RESET}"
+        modprobe tcp_bbr 2>/dev/null
+        echo "tcp_bbr" | tee /etc/modules-load.d/bbr.conf
+        sysctl -w net.core.default_qdisc=fq
+        sysctl -w net.ipv4.tcp_congestion_control=bbr
+        echo -e "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+        echo -e "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+        sysctl -p
+        echo -e "${GREEN}✅ BBR 启用完成${RESET}"
+        ;;
+      3)
+        echo -e "${BLUE}正在启用 BBR Plus（需要 bbrplus 内核）...${RESET}"
+        sysctl -w net.ipv4.tcp_congestion_control=bbrplus
+        echo "net.ipv4.tcp_congestion_control=bbrplus" >> /etc/sysctl.conf
+        sysctl -p
+        echo -e "${GREEN}✅ BBR Plus 启用完成${RESET}"
+        ;;
+      4)
+        echo -e "${BLUE}正在启用 BBR2...${RESET}"
+        sysctl -w net.core.default_qdisc=fq
+        sysctl -w net.ipv4.tcp_congestion_control=bbr2
+        echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+        echo "net.ipv4.tcp_congestion_control=bbr2" >> /etc/sysctl.conf
+        sysctl -p
+        echo -e "${GREEN}✅ BBR2 启用完成${RESET}"
+        ;;
+      5)
+        echo -e "${BLUE}切换为 Cubic 算法（默认）...${RESET}"
+        sysctl -w net.ipv4.tcp_congestion_control=cubic
+        echo "net.ipv4.tcp_congestion_control=cubic" >> /etc/sysctl.conf
+        sysctl -p
+        ;;
+      6)
+        echo -e "${BLUE}切换为 Reno 算法...${RESET}"
+        sysctl -w net.ipv4.tcp_congestion_control=reno
+        echo "net.ipv4.tcp_congestion_control=reno" >> /etc/sysctl.conf
+        sysctl -p
+        ;;
+      7)
+        echo -e "${BLUE}启用 Cake 队列算法（高级路由用）...${RESET}"
+        modprobe sch_cake 2>/dev/null
+        sysctl -w net.core.default_qdisc=cake
+        echo "net.core.default_qdisc=cake" >> /etc/sysctl.conf
+        sysctl -p
+        ;;
+      8)
+        echo -e "${YELLOW}系统支持的算法列表:${RESET}"
+        sysctl net.ipv4.tcp_available_congestion_control
+        ;;
+      9)
+        echo -e "${BLUE}重启网络栈中...${RESET}"
+        systemctl restart networking 2>/dev/null || echo "⚠️ 重启失败，请手动重启或重启系统"
+        ;;
+      0)
+        break
+        ;;
+      *)
+        echo -e "${RED}无效选项，请重新输入${RESET}"
+        ;;
+    esac
+    read -rp "按回车继续..."
+  done
+}
+  
+
   case $choice in
     1) show_info; pause;;
     2) system_update; pause;;
     3) clean_system; pause;;
     4) components_menu;;
-    5|6|7|8|9|10|11) placeholder; pause;;
+    5) bbr_menu;;
+    6|7|8|9|10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
