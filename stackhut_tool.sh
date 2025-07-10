@@ -333,7 +333,7 @@ bbr_menu() {
     echo "7) 清理无用容器和镜像"
     echo "0) 返回主菜单"
     echo "---------------------------"
-    read -rp "请选择操作: " docker_choice
+    read -rp "请输入选项: " docker_choice
 
     case $docker_choice in
       1)
@@ -394,9 +394,10 @@ system_tools_menu() {
     echo "17. 定时任务管理               18. IP端口开放扫描"
     echo "19. 服务器资源限制"
     echo "------------------------"
+    echo " 99.重启服务器"
     echo " 0. 返回主菜单"
     echo "------------------------"
-    read -rp "请输入选项编号: " tool_option
+    read -rp "请输入选项: " tool_option
 
     case $tool_option in
       1) change_root_password ;;
@@ -418,6 +419,7 @@ system_tools_menu() {
       17) crontab_manager ;;
       18) scan_open_ports ;;
       19) system_limits ;;
+      99) reboot_server ;;
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
     esac
@@ -569,6 +571,17 @@ system_limits() {
   echo "当前资源限制:"
   ulimit -a
   echo "建议修改 /etc/security/limits.conf 配置文件手动设置更高级限制。"
+}
+
+reboot_server() {
+  echo -e "${YELLOW}⚠️  即将重启服务器，请确认操作！${RESET}"
+  read -rp "是否确认重启？(y/n): " confirm
+  if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+    echo -e "${GREEN}🔄 正在重启服务器...${RESET}"
+    reboot
+  else
+    echo -e "${BLUE}已取消重启操作。${RESET}"
+  fi
 }
 
 
