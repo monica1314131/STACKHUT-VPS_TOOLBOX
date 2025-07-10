@@ -602,13 +602,13 @@ nodes_menu() {
     read -rp "请输入选择编号: " node_choice
 
     case $node_choice in
-      1) bash <(curl -Ls https://raw.githubusercontent.com/233boy/233boy.github.io/master/box.sh) ;;
-      2) bash <(curl -Ls https://raw.githubusercontent.com/YG-tsj/Shell/main/singbox.sh) ;;
-      3) bash <(curl -Ls https://gitlab.com/Suoppp/supershell/-/raw/main/warp_argo.sh) ;;
-      4) bash <(curl -Ls https://raw.githubusercontent.com/mack-a/X-UI-ALL/main/install_cn.sh) ;;
-      5) bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui-yg/main/install_iran.sh) ;;
-      6) bash <(curl -Ls https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh) ;;
-      7) bash <(curl -Ls https://raw.githubusercontent.com/FunctionClub/TG_Proxy/master/install.sh) ;;
+      1) bash <(curl -Ls https://raw.githubusercontent.com/233boy/233boy.github.io/master/box.sh) pause ;;
+      2) bash <(curl -Ls https://raw.githubusercontent.com/YG-tsj/Shell/main/singbox.sh) pause ;;
+      3) bash <(curl -Ls https://gitlab.com/Suoppp/supershell/-/raw/main/warp_argo.sh) pause ;;
+      4) bash <(curl -Ls https://raw.githubusercontent.com/mack-a/X-UI-ALL/main/install_cn.sh) pause ;;
+      5) bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui-yg/main/install_iran.sh) pause ;;
+      6) bash <(curl -Ls https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh) pause ;;
+      7) bash <(curl -Ls https://raw.githubusercontent.com/FunctionClub/TG_Proxy/master/install.sh) pause ;;
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
     esac
