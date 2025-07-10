@@ -6,11 +6,13 @@ VERSION="v0.1"
 SHORTCUT="stackhut"
 
 # ========== 颜色 ==========
-GREEN="\033[0;32m"
-YELLOW="\033[1;33m"
-BLUE="\033[1;34m"
-RED="\033[0;31m"
-RESET="\033[0m"
+GREEN="\033[0;32m"    # 绿色
+YELLOW="\033[1;33m"   # 黄色
+BLUE="\033[1;34m"     # 蓝色
+RED="\033[0;31m"      # 红色
+CYAN="\033[0;36m"     # 青蓝色（选项）
+PURPLE="\033[0;35m"   # 紫色（分隔线）
+RESET="\033[0m"       #重置颜色
 
 # ========== 工具函数 ==========
 header() {
@@ -18,7 +20,7 @@ header() {
   echo -e "${YELLOW}==================================================="
   echo -e "  ${TOOL_NAME} ${VERSION}"
   echo -e "  一个简洁高效的 VPS 一键管理工具，支持 Ubuntu / Debian / CentOS / Alpine / Fedora / Rocky / Almalinux / Oracle-Linux 等常见发行版。"
-  echo -e "  https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX"
+  echo -e "  地址:https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX"
   echo -e "===================================================${RESET}"
 }
 
