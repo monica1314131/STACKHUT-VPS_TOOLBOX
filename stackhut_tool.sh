@@ -587,7 +587,7 @@ reboot_server() {
 nodes_menu() {
   while true; do
     clear
-    echo -e "${GREEN}▶ 节点搭建合集${RESET}"
+    echo -e "${GREEN}▶ 节点搭建${RESET}"
     echo "------------------------"
     echo " 1. 233boy.sing-box一键脚本"
     echo " 2. YGKKK-Sing-box四合一"
@@ -631,6 +631,76 @@ nodes_menu() {
   done
 }
 
+text_menu() {
+  while true; do
+    clear
+    echo -e "${GREEN}▶ 测试脚本${RESET}"
+
+    echo "------IP解锁&状态检测------"
+    echo " 1. IP质量体检脚本"
+    echo " 2. 原生检测"
+    echo " 3. 流媒体平台测试"
+
+    echo "------测速脚本------"
+    echo " 4. Speedtest测速"
+    echo " 5. 全球测速"
+    
+    echo "------回程测试------"
+    echo " 6. 回程测试(小白专用)"
+    echo " 7. 回程详细测试(推荐)"
+
+    echo "------综合测试------"
+    echo " 8. 融合怪"
+    echo " 9. NodeBench"
+    echo " 10. LemonBench"
+    echo " 11. GB5测试"
+    
+    echo "------------------------"
+    echo " 0. 返回主菜单"
+    echo "------------------------"
+    read -rp "请输入选项: " node_choice
+
+    case $node_choice in
+      1)bash <(curl -sL IP.Check.Place) 
+         pause 
+         ;;
+      2) bash <(curl -sL Media.Check.Place)
+         pause 
+         ;;
+      3) bash <(curl -L -s check.unlock.media) 
+         pause 
+         ;;
+      4) bash <(curl -sL bash.icu/speedtest) 
+         pause 
+         ;;
+      5) wget -qO- nws.sh | bash
+         pause 
+         ;;
+      6) curl https://raw.githubusercontent.com/ludashi2020/backtrace/main/install.sh -sSf | sh
+         pause 
+         ;;  
+      7) wget -N --no-check-certificate https://raw.githubusercontent.com/Chennhaoo/Shell_Bash/master/AutoTrace.sh && chmod +x AutoTrace.sh && bash AutoTrace.sh
+         pause 
+         ;;
+      8) bash <(wget -qO- --no-check-certificate https://gitlab.com/spiritysdx/za/-/raw/main/ecs.sh)
+         pause 
+         ;;
+      9) bash <(curl -sL https://raw.githubusercontent.com/LloydAsp/NodeBench/main/NodeBench.sh)
+         pause 
+         ;;
+      10) wget -qO- https://raw.githubusercontent.com/LemonBench/LemonBench/main/LemonBench.sh | bash -s -- --fast 
+         pause 
+         ;;
+      11) curl -sL yabs.sh | bash -s -- -i5
+         pause 
+         ;;
+      0) break ;;
+      *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
+    esac
+    pause
+  done
+}
+
 
 
   case $choice in
@@ -643,7 +713,8 @@ nodes_menu() {
     7) run_fscarmen_warp ;;
     8) system_tools_menu ;;
     9) nodes_menu ;;
-    10|11) placeholder; pause;;
+    10) text_menu ;;
+    11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
