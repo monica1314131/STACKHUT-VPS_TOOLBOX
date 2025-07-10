@@ -225,10 +225,9 @@ while true; do
   echo " 5) BBR管理▶"
   echo " 6) Docker管理▶"
   echo " 7) WARP 解锁 (Fscarmen脚本)"
-  echo " 8) 面板工具▶"
-  echo " 9) 系统工具▶"
-  echo "10) 节点搭建▶"
-  echo "11) 测试脚本▶"
+  echo " 8) 系统工具▶"
+  echo "9) 节点搭建▶"
+  echo "10) 测试脚本▶"
   echo "00) 脚本更新"
   echo "88) 退出脚本"
   echo "----------------------------------"
@@ -379,6 +378,199 @@ bbr_menu() {
   done
 }
 
+system_tools_menu() {
+  while true; do
+    clear
+    echo -e "${GREEN}▶ 系统工具${RESET}"
+    echo "------------------------"
+    echo " 1. 修改ROOT密码               2. 开启ROOT密码登录"
+    echo " 3. 禁用修改ROOT密码           4. 开放所有端口"
+    echo " 5. 修改SSH连接端口            6. 优化DNS地址"
+    echo " 7. 禁用ROOT账户创建新账户     8. 切换优先IPv4/IPv6"
+    echo " 9. 查看端口占用状态           10. 修改虚拟内存大小"
+    echo "11. 用户/密码生成器            12. 用户管理"
+    echo "13. 防火墙高级管理器           14. iptables一键转发"
+    echo "15. 修改主机名                 16. 切换系统更新源"
+    echo "17. 定时任务管理               18. IP端口开放扫描"
+    echo "19. 服务器资源限制"
+    echo "------------------------"
+    echo " 0. 返回主菜单"
+    echo "------------------------"
+    read -rp "请输入选项编号: " tool_option
+
+    case $tool_option in
+      1) change_root_password ;;
+      2) enable_root_login ;;
+      3) disable_root_password_change ;;
+      4) open_all_ports ;;
+      5) change_ssh_port ;;
+      6) optimize_dns ;;
+      7) disable_root_create ;;
+      8) toggle_ipv4_ipv6 ;;
+      9) check_port_usage ;;
+      10) modify_swap ;;
+      11) user_password_generator ;;
+      12) user_manage ;;
+      13) firewall_manager ;;
+      14) iptables_forward ;;
+      15) change_hostname ;;
+      16) switch_mirror ;;
+      17) crontab_manager ;;
+      18) scan_open_ports ;;
+      19) system_limits ;;
+      0) break ;;
+      *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
+    esac
+
+    read -rp "按回车继续..."
+  done
+}
+
+# 所有系统工具功能函数定义（占位模板）
+
+change_root_password() {
+  echo "修改 ROOT 密码..."
+  passwd root
+}
+
+enable_root_login() {
+  echo "启用 SSH 登录密码..."
+  sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+  sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+  systemctl restart sshd
+  echo "已启用 ROOT 登录密码"
+}
+
+disable_root_password_change() {
+  echo "禁用 ROOT 密码修改权限..."
+  chattr +i /etc/shadow
+  echo "已设置 /etc/shadow 为不可变"
+}
+
+open_all_ports() {
+  echo "开放所有端口 (iptables)..."
+  iptables -P INPUT ACCEPT
+  iptables -P FORWARD ACCEPT
+  iptables -P OUTPUT ACCEPT
+  iptables -F
+  echo "已开放所有端口"
+}
+
+change_ssh_port() {
+  read -rp "请输入新的SSH端口: " new_port
+  sed -i "/^#*Port /c\\Port $new_port" /etc/ssh/sshd_config
+  systemctl restart sshd
+  echo "SSH端口已改为 $new_port"
+}
+
+optimize_dns() {
+  echo "正在优化 DNS 设置..."
+  echo "nameserver 8.8.8.8" > /etc/resolv.conf
+  echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+  echo "DNS 已优化"
+}
+
+disable_root_create() {
+  echo "禁用 ROOT 创建账户功能..."
+  chattr +i /etc/passwd /etc/shadow
+  echo "已设置系统用户配置为不可更改"
+}
+
+toggle_ipv4_ipv6() {
+  echo "切换 IPv4/IPv6 优先级..."
+  echo -e "1) IPv4 优先\n2) IPv6 优先"
+  read -rp "选择: " net_choice
+  case $net_choice in
+    1)
+      echo "precedence ::ffff:0:0/96  100" >> /etc/gai.conf
+      echo "已设置为 IPv4 优先"
+      ;;
+    2)
+      sed -i '/^precedence ::ffff:0:0\/96/d' /etc/gai.conf
+      echo "已设置为 IPv6 优先"
+      ;;
+  esac
+}
+
+check_port_usage() {
+  echo "当前端口占用:"
+  ss -tunlp
+}
+
+modify_swap() {
+  read -rp "输入新的Swap大小（单位MB）: " swap_size
+  swapoff -a
+  dd if=/dev/zero of=/swapfile bs=1M count=$swap_size
+  mkswap /swapfile
+  chmod 600 /swapfile
+  swapon /swapfile
+  echo "Swap设置完成: ${swap_size}MB"
+}
+
+user_password_generator() {
+  username="user_$(date +%s)"
+  password=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 12)
+  useradd -m "$username"
+  echo "$username:$password" | chpasswd
+  echo "创建用户: $username"
+  echo "密码: $password"
+}
+
+user_manage() {
+  echo "当前用户列表:"
+  cut -d: -f1 /etc/passwd
+}
+
+firewall_manager() {
+  echo "进入防火墙高级管理器...（占位）"
+  # 这里可以调用更复杂的 iptables/nftables 管理界面
+}
+
+iptables_forward() {
+  echo 1 > /proc/sys/net/ipv4/ip_forward
+  echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+  sysctl -p
+  echo "已开启转发功能"
+}
+
+change_hostname() {
+  read -rp "请输入新的主机名: " new_hostname
+  hostnamectl set-hostname "$new_hostname"
+  echo "主机名已更改为 $new_hostname"
+}
+
+switch_mirror() {
+  echo "切换为中科大源..."
+  if [[ -f /etc/apt/sources.list ]]; then
+    sed -i 's@http.*archive.ubuntu.com@https://mirrors.ustc.edu.cn@' /etc/apt/sources.list
+    apt update
+  fi
+  echo "更新源完成"
+}
+
+crontab_manager() {
+  echo "当前定时任务:"
+  crontab -l
+  echo "编辑中..."
+  crontab -e
+}
+
+scan_open_ports() {
+  echo "请输入要扫描的IP: "
+  read target_ip
+  echo "正在扫描..."
+  for port in {1..100}; do
+    (echo >/dev/tcp/$target_ip/$port) >/dev/null 2>&1 && echo "端口 $port 开放"
+  done
+  echo "扫描完成"
+}
+
+system_limits() {
+  echo "当前资源限制:"
+  ulimit -a
+  echo "建议修改 /etc/security/limits.conf 配置文件手动设置更高级限制。"
+}
+
 
   case $choice in
     1) show_info; pause;;
@@ -388,7 +580,8 @@ bbr_menu() {
     5) bbr_menu;;
     6) docker_menu ;;
     7) run_fscarmen_warp ;;
-    8|9|10|11) placeholder; pause;;
+    8) system_tools_menu ;;
+    9|10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
