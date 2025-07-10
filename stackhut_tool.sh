@@ -201,8 +201,8 @@ install_package() {
   fi
 }
 
-warp_fscarmen_menu() {
-  bash <(curl -fsSL https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh)
+run_fscarmen_warp() {
+  bash <(curl -fsSL https://raw.githubusercontent.com/fscarmen/warp/main/warp.sh)
 }
 
 placeholder() {
@@ -387,7 +387,7 @@ bbr_menu() {
     4) components_menu;;
     5) bbr_menu;;
     6) docker_menu ;;
-    7) warp_fscarmen_menu ;;
+    7) run_fscarmen_warp ;;
     8|9|10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
