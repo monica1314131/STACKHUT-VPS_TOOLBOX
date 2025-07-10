@@ -15,7 +15,7 @@ RESET="\033[0m"
 # ========== 工具函数 ==========
 header() {
   clear
-  echo -e "${GREEN}==============================="
+  echo -e "${RED}==============================="
   echo -e "  ${TOOL_NAME} ${VERSION}"
   echo -e "  https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX"
   echo -e "===============================${RESET}"
@@ -419,7 +419,6 @@ system_tools_menu() {
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
     esac
-
     read -rp "按回车继续..."
   done
 }
