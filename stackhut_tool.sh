@@ -587,15 +587,25 @@ nodes_menu() {
   while true; do
     clear
     echo -e "${GREEN}▶ 节点搭建${RESET}"
-    echo "------------------------"
+    echo "------------sing-box------------"
     echo " 1. 233boy.sing-box一键脚本"
     echo " 2. YGKKK-Sing-box四合一"
-    echo " 3. YGKKK-X-UI面板"
-    echo " 4. 3X-UI面板(优化版)"
-    echo " 5. 3X-UI面板(alpine系统专用)"
-    echo "------------------------"
-    echo " 6. Alice免费机一键添加IPV4出口"
-    echo " 7. LegendVPS免费机一键添加IPV4出口"
+    
+    echo "------------XRAY面板------------"
+    echo " 3. X-UI面板(原版)"
+    echo " 4. YGKKK-X-UI面板"
+    echo " 5. 3X-UI面板(优化版)"
+    echo " 6. 3X-UI面板(alpine系统专用)"
+    
+    echo "-----------单协议-------------"
+    echo " 7. Alice免费机一键添加IPV4出口"
+    echo " 8. Alice免费机一键添加IPV4出口"
+    echo " 9. Alice免费机一键添加IPV4出口"
+    
+    echo "-----------一键添加IPV4出口-------------"
+    echo " 10. Alice免费机一键添加IPV4出口"
+    echo " 11. LegendVPS免费机一键添加IPV4出口"
+    
     echo "------------------------"
     echo " 0. 返回主菜单"
     echo "------------------------"
@@ -608,19 +618,22 @@ nodes_menu() {
       2) bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/sing-box-yg/main/sb.sh)
          pause 
          ;;
-      3) bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/x-ui-yg/main/install.sh) 
+      3) bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
          pause 
          ;;
-      4) bash <(curl -Ls https://raw.githubusercontent.com/xeefei/3x-ui/master/install.sh) 
+      4) bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/x-ui-yg/main/install.sh) 
          pause 
          ;;
-      5) bash <(curl -Ls https://raw.githubusercontent.com/56idc/3x-ui-alpine/main/install_alpine.sh)
+      5) bash <(curl -Ls https://raw.githubusercontent.com/xeefei/3x-ui/master/install.sh) 
          pause 
          ;;
-      6) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i alice
+      6) bash <(curl -Ls https://raw.githubusercontent.com/56idc/3x-ui-alpine/main/install_alpine.sh)
+         pause 
+         ;;
+      10) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i alice
          pause 
          ;;  
-      7) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i legend
+      11) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i legend
          pause 
          ;;    
       0) break ;;

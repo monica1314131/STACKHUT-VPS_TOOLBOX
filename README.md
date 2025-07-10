@@ -16,8 +16,13 @@
 wget -N https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX/raw/main/stackhut_tool.sh && chmod +x stackhut_tool.sh && ./stackhut_tool.sh
 ```
 
-
-💡 项目说明
+## 无法运行，请先安装curl wget
+     -Ubuntu/Debian：apt-get install -y curl wget
+     -Alpine：apk add curl wget
+     -Fedora：dnf install -y curl wget
+     -CentOS/Rocky/Almalinux/Oracle-linux/Amazon-linux：yum install -y curl wget
+     
+## 项目说明
 
 作者：@StackHut
 
