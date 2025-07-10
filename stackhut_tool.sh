@@ -654,6 +654,7 @@ text_menu() {
     echo " 9. NodeBench"
     echo " 10. LemonBench"
     echo " 11. GB5测试"
+    echo "------------------------"
     echo " 12. TCP窗口调优"
     
     echo "------------------------"
