@@ -382,7 +382,7 @@ system_tools_menu() {
     clear
     echo -e "${GREEN}▶ 系统工具${RESET}"
     echo "------------------------"
-    echo " 1. 修改ROOT密码               2. 开启ROOT密码登录"
+    echo -e " ${YELLOW}1. 修改ROOT密码               2. 开启ROOT密码登录"
     echo " 3. 禁用修改ROOT密码           4. 开放所有端口"
     echo " 5. 修改SSH连接端口            6. 优化DNS地址"
     echo " 7. 禁用ROOT账户创建新账户     8. 切换优先IPv4/IPv6"
@@ -391,7 +391,7 @@ system_tools_menu() {
     echo "13. 防火墙高级管理器           14. iptables一键转发"
     echo "15. 修改主机名                 16. 切换系统更新源"
     echo "17. 定时任务管理               18. IP端口开放扫描"
-    echo "19. 服务器资源限制"
+    echo "19. 服务器资源限制${RESET}"
     echo "------------------------"
     echo -e " ${YELLOW}99.重启服务器${RESET}"
     echo "------------------------"
