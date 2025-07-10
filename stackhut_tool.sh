@@ -602,7 +602,7 @@ nodes_menu() {
     read -rp "请输入选择编号: " node_choice
 
     case $node_choice in
-      1) bash <(curl -Ls https://raw.githubusercontent.com/233boy/233boy.github.io/master/box.sh) 
+      1) bash <(wget -qO- -o- https://github.com/233boy/sing-box/raw/main/install.sh) 
          pause 
          ;;
       2) bash <(curl -Ls https://raw.githubusercontent.com/YG-tsj/Shell/main/singbox.sh) 
