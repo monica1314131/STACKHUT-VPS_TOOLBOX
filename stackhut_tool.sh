@@ -226,10 +226,10 @@ while true; do
   echo " 6) Docker管理▶"
   echo " 7) WARP 解锁 (Fscarmen脚本)"
   echo " 8) 系统工具▶"
-  echo "9) 节点搭建▶"
-  echo "10) 测试脚本▶"
-  echo "00) 脚本更新"
-  echo "88) 退出脚本"
+  echo " 9) 节点搭建▶"
+  echo " 10) 测试脚本▶"
+  echo " 00) 脚本更新"
+  echo " 88) 退出脚本"
   echo "----------------------------------"
   read -rp "请输入你的选择: " choice
 
