@@ -634,7 +634,7 @@ text_menu() {
 
     echo "------IP解锁&状态检测------"
     echo " 1. IP质量体检脚本"
-    echo " 2. 原生检测"
+    echo " 2. NodeQuality"
     echo " 3. 流媒体平台测试"
 
     echo "------测速脚本------"
@@ -662,7 +662,7 @@ text_menu() {
       1)bash <(curl -sL IP.Check.Place) 
          pause 
          ;;
-      2) bash <(curl -sL Media.Check.Place)
+      2) bash <(curl -sL https://run.NodeQuality.com)
          pause 
          ;;
       3) bash <(curl -L -s check.unlock.media) 
