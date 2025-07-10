@@ -202,7 +202,7 @@ install_package() {
 }
 
 run_fscarmen_warp() {
-  bash <(curl -fsSL https://raw.githubusercontent.com/fscarmen/warp/main/warp.sh)
+  wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
 }
 
 placeholder() {
