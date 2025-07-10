@@ -17,6 +17,7 @@ header() {
   clear
   echo -e "${RED}==============================="
   echo -e "  ${TOOL_NAME} ${VERSION}"
+  echo -e "一个简洁高效的 VPS 一键管理工具，支持 Ubuntu / Debian / CentOS / Alpine / Fedora / Rocky / Almalinux / Oracle-Linux 等常见发行版。"
   echo -e "  https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX"
   echo -e "===============================${RESET}"
 }
