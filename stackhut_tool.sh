@@ -202,17 +202,13 @@ install_package() {
 }
 
 run_fscarmen_warp() {
-  wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
+  wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh #warp
 }
 
 placeholder() {
   echo -e "${YELLOW}此功能暂未实现，敬请期待...${RESET}"
 }
 
-update_script() {
-  echo -e "${BLUE}正在更新脚本...${RESET}"
-  curl -fsSL https://raw.githubusercontent.com/monica1314131/STACKHUT-VPS_TOOLBOX/main/stackhut_tool.sh -o $0 && chmod +x $0 && exec $0
-}
 
 # ========== 主菜单循环 ==========
 while true; do
@@ -706,7 +702,17 @@ text_menu() {
   done
 }
 
-
+update_script() {
+  echo -e "${BLUE}🔄 正在从 GitHub 拉取最新版本...${RESET}"
+  curl -fsSL https://raw.githubusercontent.com/monica1314131/STACKHUT-VPS_TOOLBOX/main/stackhut_tool.sh -o "$0"
+  if [[ $? -eq 0 ]]; then
+    chmod +x "$0"
+    echo -e "${GREEN}✅ 脚本更新完成，正在重新启动...${RESET}"
+    exec "$0"
+  else
+    echo -e "${RED}❌ 更新失败，请检查网络或 GitHub 链接是否有效。${RESET}"
+  fi
+}
 
   case $choice in
     1) show_info; pause;;
@@ -720,7 +726,7 @@ text_menu() {
     9) nodes_menu ;;
     10) text_menu ;;
     11) placeholder; pause;;
-    00) update_script; exit;;
+    00) update_script;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
   esac
