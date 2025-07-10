@@ -598,9 +598,9 @@ nodes_menu() {
     echo " 6. 3X-UI面板(alpine系统专用)"
     
     echo "-----------单协议-------------"
-    echo " 7. Alice免费机一键添加IPV4出口"
-    echo " 8. Alice免费机一键添加IPV4出口"
-    echo " 9. Alice免费机一键添加IPV4出口"
+    echo " 7. ？"
+    echo " 8. ？"
+    echo " 9. ？"
     
     echo "-----------一键添加IPV4出口-------------"
     echo " 10. Alice免费机一键添加IPV4出口"
