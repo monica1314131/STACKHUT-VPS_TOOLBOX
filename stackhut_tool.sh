@@ -654,6 +654,7 @@ text_menu() {
     echo " 9. NodeBench"
     echo " 10. LemonBench"
     echo " 11. GB5测试"
+    echo " 12. TCP窗口调优"
     
     echo "------------------------"
     echo " 0. 返回主菜单"
@@ -694,6 +695,9 @@ text_menu() {
       11) curl -sL yabs.sh | bash -s -- -i5
          pause 
          ;;
+      12) wget http://sh.nekoneko.cloud/tools.sh -O tools.sh && bash tools.sh
+         pause 
+         ;;  
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
     esac
