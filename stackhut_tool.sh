@@ -217,7 +217,7 @@ placeholder() {
 while true; do
   header
   echo -e "${GREEN}可用操作：${RESET}"
-  echo "${GREEN} 1) 本机信息"
+  echo " 1) 本机信息"
   echo " 2) 系统更新"
   echo " 3) 系统清理"
   echo " 4) 组件管理▶"
@@ -228,7 +228,7 @@ while true; do
   echo " 9) 节点搭建▶"
   echo " 10) 测试脚本▶"
   echo " 00) 脚本更新"
-  echo " 88) 退出脚本"${RESET}"
+  echo " 88) 退出脚本"
   echo "----------------------------------"
   read -rp "请输入你的选择: " choice
 
