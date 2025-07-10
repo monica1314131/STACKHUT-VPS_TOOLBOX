@@ -397,7 +397,7 @@ system_tools_menu() {
     echo "------------------------"
     echo -e " ${YELLOW} 0. 返回主菜单${RESET}"
     echo "------------------------"
-    read -rp "请输入选项: " tool_option
+    read -e -rp " ${YELLOW}请输入选项: " tool_option
 
     case $tool_option in
       1) change_root_password ;;
