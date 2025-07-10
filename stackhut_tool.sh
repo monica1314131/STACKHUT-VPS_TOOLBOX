@@ -584,6 +584,38 @@ reboot_server() {
   fi
 }
 
+nodes_menu() {
+  while true; do
+    clear
+    echo -e "${GREEN}▶ 节点搭建合集${RESET}"
+    echo "------------------------"
+    echo " 1. 233boy.sing-box一键脚本"
+    echo " 2. 勇哥Sing-box四合一"
+    echo " 3. Suoha一键Argo脚本"
+    echo " 4. 新版X-UI面板一键脚本"
+    echo " 5. 伊朗版3X-UI面板一键脚本"
+    echo " 6. OpenVPN一键安装脚本"
+    echo " 7. 一键搭建TG代理"
+    echo "------------------------"
+    echo " 0. 返回主菜单"
+    echo "------------------------"
+    read -rp "请输入选择编号: " node_choice
+
+    case $node_choice in
+      1) bash <(curl -Ls https://github.com/233boy/233boy/raw/master/singbox/install.sh) ;;
+      2) bash <(curl -Ls https://raw.githubusercontent.com/YG-tsj/Shell/main/singbox.sh) ;;
+      3) bash <(curl -Ls https://gitlab.com/Suoppp/supershell/-/raw/main/warp_argo.sh) ;;
+      4) bash <(curl -Ls https://raw.githubusercontent.com/mack-a/X-UI-ALL/main/install_cn.sh) ;;
+      5) bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui-yg/main/install_iran.sh) ;;
+      6) bash <(curl -Ls https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh) ;;
+      7) bash <(curl -Ls https://raw.githubusercontent.com/FunctionClub/TG_Proxy/master/install.sh) ;;
+      0) break ;;
+      *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
+    esac
+    pause
+  done
+}
+
 
   case $choice in
     1) show_info; pause;;
@@ -594,7 +626,8 @@ reboot_server() {
     6) docker_menu ;;
     7) run_fscarmen_warp ;;
     8) system_tools_menu ;;
-    9|10|11) placeholder; pause;;
+    9) nodes_menu ;;
+    10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
