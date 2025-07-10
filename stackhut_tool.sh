@@ -602,7 +602,7 @@ nodes_menu() {
     read -rp "请输入选择编号: " node_choice
 
     case $node_choice in
-      1) bash <(curl -Ls https://github.com/233boy/233boy/raw/master/singbox/install.sh) ;;
+      1) bash <(curl -Ls https://raw.githubusercontent.com/233boy/233boy.github.io/master/box.sh) ;;
       2) bash <(curl -Ls https://raw.githubusercontent.com/YG-tsj/Shell/main/singbox.sh) ;;
       3) bash <(curl -Ls https://gitlab.com/Suoppp/supershell/-/raw/main/warp_argo.sh) ;;
       4) bash <(curl -Ls https://raw.githubusercontent.com/mack-a/X-UI-ALL/main/install_cn.sh) ;;
@@ -615,6 +615,7 @@ nodes_menu() {
     pause
   done
 }
+
 
 
   case $choice in
