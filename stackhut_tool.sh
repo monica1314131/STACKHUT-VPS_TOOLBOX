@@ -201,6 +201,9 @@ install_package() {
   fi
 }
 
+warp_fscarmen_menu() {
+  bash <(curl -fsSL https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh)
+}
 
 placeholder() {
   echo -e "${YELLOW}此功能暂未实现，敬请期待...${RESET}"
@@ -221,7 +224,7 @@ while true; do
   echo " 4) 组件管理▶"
   echo " 5) BBR管理▶"
   echo " 6) Docker管理▶"
-  echo " 7) WARP解锁"
+  echo " 7) WARP 解锁 (Fscarmen脚本)"
   echo " 8) 面板工具▶"
   echo " 9) 系统工具▶"
   echo "10) 节点搭建▶"
@@ -384,7 +387,8 @@ bbr_menu() {
     4) components_menu;;
     5) bbr_menu;;
     6) docker_menu ;;
-    7|8|9|10|11) placeholder; pause;;
+    7) warp_fscarmen_menu ;;
+    8|9|10|11) placeholder; pause;;
     00) update_script; exit;;
     88) echo -e "${GREEN}再见！${RESET}"; exit 0;;
     *) echo -e "${RED}无效选项，请重新输入。${RESET}"; pause;;
