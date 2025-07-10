@@ -395,7 +395,7 @@ system_tools_menu() {
     echo "------------------------"
     echo -e " ${YELLOW}99.重启服务器${RESET}"
     echo "------------------------"
-    echo " 0. 返回主菜单"
+    echo -e " ${YELLOW} 0. 返回主菜单${RESET}"
     echo "------------------------"
     read -rp "请输入选项: " tool_option
 
