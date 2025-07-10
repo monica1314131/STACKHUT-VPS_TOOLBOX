@@ -590,39 +590,31 @@ nodes_menu() {
     echo -e "${GREEN}▶ 节点搭建合集${RESET}"
     echo "------------------------"
     echo " 1. 233boy.sing-box一键脚本"
-    echo " 2. 勇哥Sing-box四合一"
-    echo " 3. Suoha一键Argo脚本"
-    echo " 4. 新版X-UI面板一键脚本"
-    echo " 5. 伊朗版3X-UI面板一键脚本"
-    echo " 6. OpenVPN一键安装脚本"
-    echo " 7. 一键搭建TG代理"
+    echo " 2. YGKKK-Sing-box四合一"
+    echo " 3. YGKKK-X-UI面板一键脚本"
+    echo " 4. 3X-UI面板一键脚本"
+    echo " 5. alpine系统-3X-UI面板"
     echo "------------------------"
     echo " 0. 返回主菜单"
     echo "------------------------"
-    read -rp "请输入选择编号: " node_choice
+    read -rp "请输入选项: " node_choice
 
     case $node_choice in
       1) bash <(wget -qO- -o- https://github.com/233boy/sing-box/raw/main/install.sh) 
          pause 
          ;;
-      2) bash <(curl -Ls https://raw.githubusercontent.com/YG-tsj/Shell/main/singbox.sh) 
+      2) bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/sing-box-yg/main/sb.sh)
          pause 
          ;;
-      3) bash <(curl -Ls https://gitlab.com/Suoppp/supershell/-/raw/main/warp_argo.sh) 
+      3) bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/x-ui-yg/main/install.sh) 
          pause 
          ;;
-      4) bash <(curl -Ls https://raw.githubusercontent.com/mack-a/X-UI-ALL/main/install_cn.sh) 
+      4) bash <(curl -Ls https://raw.githubusercontent.com/xeefei/3x-ui/master/install.sh) 
          pause 
          ;;
-      5) bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui-yg/main/install_iran.sh) 
+      5) bash <(curl -Ls https://raw.githubusercontent.com/56idc/3x-ui-alpine/main/install_alpine.sh)
          pause 
-         ;;
-      6) bash <(curl -Ls https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh) 
-         pause
-         ;;
-      7) bash <(curl -Ls https://raw.githubusercontent.com/FunctionClub/TG_Proxy/master/install.sh)
-         pause 
-         ;;
+         ;;  
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
     esac
