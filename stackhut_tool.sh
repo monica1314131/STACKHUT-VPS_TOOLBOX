@@ -390,7 +390,7 @@ system_tools_menu() {
     echo "11. 用户/密码生成器            12. 用户管理"
     echo "13. 防火墙高级管理器           14. iptables一键转发"
     echo "15. 修改主机名                 16. 切换系统更新源"
-    echo "17. 定时任务管理               18. IP端口开放扫描${RESET}"
+    echo "17. 定时任务管理               18. IP端口开放扫描"
     echo -e "${YELLOW}19. 服务器资源限制${RESET}"
     echo "------------------------"
     echo -e " ${YELLOW}99.重启服务器${RESET}"
