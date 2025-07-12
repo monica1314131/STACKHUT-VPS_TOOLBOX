@@ -597,13 +597,8 @@ nodes_menu() {
     echo " 5. 3X-UI面板(优化版)"
     echo " 6. 3X-UI面板(alpine系统专用)"
     
-    echo "-----------单协议-------------"
-    echo " 7. ？"
-    echo " 8. ？"
-    echo " 9. ？"
-    
     echo "-----------一键添加IPV4出口-------------"
-    echo " 10. Alice免费机一键添加IPV4出口"
+    echo " 7. Alice免费机一键添加IPV4出口"
     
     echo "------------------------"
     echo " 0. 返回主菜单"
@@ -629,7 +624,7 @@ nodes_menu() {
       6) bash <(curl -Ls https://raw.githubusercontent.com/56idc/3x-ui-alpine/main/install_alpine.sh)
          pause 
          ;;
-      10) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i alice
+      7) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i alice
          pause 
          ;;      
       0) break ;;
