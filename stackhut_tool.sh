@@ -158,8 +158,8 @@ clean_system() {
 components_menu() {
   while true; do
     clear
-    echo -e "${GREEN}====== 组件管理（常用工具一键安装） ======${RESET}"
-    echo "1) 安装 curl 下载工具"
+    echo -e "${YELLOW}====== 组件管理（常用工具一键安装） ======${RESET}"
+    echo -e "${GREEN}1) 安装 curl 下载工具"
     echo "2) 安装 wget 下载工具"
     echo "3) 安装 sudo 超级管理"
     echo "4) 安装 socat 通信连接"
@@ -235,7 +235,7 @@ while true; do
 bbr_menu() {
   while true; do
     clear
-    echo -e "${GREEN}========= BBR 拥塞控制管理 =========${RESET}"
+    echo -e "${YELLOW}========= BBR 拥塞控制管理 =========${RESET}"
     echo -e "${GREEN} 1) 查看当前 BBR 状态"
     echo " 2) 启用 BBR（原版）"
     echo " 3) 启用 BBR Plus"
@@ -322,8 +322,8 @@ bbr_menu() {
   docker_menu() {
   while true; do
     clear
-    echo -e "${GREEN}====== Docker 管理 ======${RESET}"
-    echo "1) 安装 Docker"
+    echo -e "${YELLOW}====== Docker 管理 ======${RESET}"
+    echo -e "${GREEN}1) 安装 Docker"
     echo "2) 卸载 Docker"
     echo "3) 查看 Docker 状态"
     echo "4) 启动 Docker"
@@ -380,9 +380,9 @@ bbr_menu() {
 system_tools_menu() {
   while true; do
     clear
-    echo -e "${GREEN}▶ 系统工具${RESET}"
+    echo -e "${YELLOW}▶ 系统工具${RESET}"
     echo "------------------------"
-    echo " 1. 修改ROOT密码               2. 开启ROOT密码登录"
+    echo -e "${GREEN} 1. 修改ROOT密码               2. 开启ROOT密码登录"
     echo " 3. 禁用修改ROOT密码           4. 开放所有端口"
     echo " 5. 修改SSH连接端口            6. 优化DNS地址"
     echo " 7. 禁用ROOT账户创建新账户     8. 切换优先IPv4/IPv6"
