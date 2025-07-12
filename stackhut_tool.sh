@@ -637,22 +637,22 @@ nodes_menu() {
 text_menu() {
   while true; do
     clear
-    echo -e "${GREEN}▶ 测试脚本${RESET}"
+    echo -e "${YELLOW}▶ 测试脚本${RESET}"
 
-    echo "------IP解锁&状态检测------"
+    echo -e "${GREEN}"------IP解锁&状态检测------"
     echo " 1. IP质量体检脚本"
     echo " 2. NodeQuality"
     echo " 3. 流媒体平台测试"
 
-    echo "------测速脚本------"
+    echo -e "${GREEN}"------测速脚本------"
     echo " 4. Speedtest测速"
     echo " 5. 全球测速"
     
-    echo "------回程测试------"
+    echo -e "${GREEN}"------回程测试------"
     echo " 6. 回程测试(小白专用)"
     echo " 7. 回程详细测试(推荐)"
 
-    echo "------综合测试------"
+    echo -e "${GREEN}"------综合测试------"
     echo " 8. 融合怪"
     echo " 9. NodeBench"
     echo " 10. LemonBench"
