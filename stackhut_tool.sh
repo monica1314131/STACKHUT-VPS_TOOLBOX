@@ -604,7 +604,6 @@ nodes_menu() {
     
     echo "-----------一键添加IPV4出口-------------"
     echo " 10. Alice免费机一键添加IPV4出口"
-    echo " 11. LegendVPS免费机一键添加IPV4出口"
     
     echo "------------------------"
     echo " 0. 返回主菜单"
@@ -632,10 +631,7 @@ nodes_menu() {
          ;;
       10) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i alice
          pause 
-         ;;  
-      11) curl -L https://raw.githubusercontent.com/hkfires/onekey-tun2socks/main/onekey-tun2socks.sh -o onekey-tun2socks.sh && chmod +x onekey-tun2socks.sh && sudo ./onekey-tun2socks.sh -i legend
-         pause 
-         ;;    
+         ;;      
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
     esac
