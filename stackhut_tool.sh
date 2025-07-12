@@ -236,7 +236,7 @@ bbr_menu() {
   while true; do
     clear
     echo -e "${GREEN}========= BBR 拥塞控制管理 =========${RESET}"
-    echo " 1) 查看当前 BBR 状态"
+    echo -e "${GREEN} 1) 查看当前 BBR 状态"
     echo " 2) 启用 BBR（原版）"
     echo " 3) 启用 BBR Plus"
     echo " 4) 启用 BBR2"
