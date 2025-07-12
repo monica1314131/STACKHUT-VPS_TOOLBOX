@@ -588,17 +588,17 @@ nodes_menu() {
   while true; do
     clear
     echo -e "${YELLOW}▶ 节点搭建${RESET}"
-    echo -e "${GREEN}------------sing-box------------"
+    echo -e "${YELLOW}------------sing-box------------${RESET}"
     echo " 1. 233boy.sing-box一键脚本"
     echo " 2. YGKKK-Sing-box四合一"
     
-    echo -e "${GREEN}------------XRAY面板------------"
+    echo -e "${YELLOW}------------XRAY面板------------${RESET}"
     echo " 3. X-UI面板(原版)"
     echo " 4. YGKKK-X-UI面板"
     echo " 5. 3X-UI面板(优化版)"
     echo " 6. 3X-UI面板(alpine系统专用)"
     
-    echo -e "${GREEN}-----------一键添加IPV4出口-------------"
+    echo -e "${YELLOW}-----------一键添加IPV4出口-------------${RESET}"
     echo " 7. Alice免费机一键添加IPV4出口"
     
     echo "------------------------"
