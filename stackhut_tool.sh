@@ -170,7 +170,7 @@ components_menu() {
     echo "8) 安装 tar GZ压缩解压工具"
     echo "0) 返回主菜单"
     echo "------------------------------------------"
-    read -rp "请选择要安装的工具: " tool_choice
+    read -rp "请输入选项: " tool_choice
 
     case $tool_choice in
       1) install_package curl ;;
@@ -231,7 +231,7 @@ while true; do
   echo " 00) 脚本更新"
   echo " 88) 退出脚本"
   echo "----------------------------------"
-  read -rp "请输入你的选择: " choice
+  read -rp "请输入选项: " choice
 
 bbr_menu() {
   while true; do
@@ -396,7 +396,7 @@ system_tools_menu() {
     echo "------------------------"
     echo -e " ${YELLOW}99.重启服务器${RESET}"
     echo "------------------------"
-    echo " 0. 返回主菜单"
+    echo -e "${GREEN} 0. 返回主菜单"
     echo "------------------------"
     read -rp " 请输入选项: " tool_option
 
