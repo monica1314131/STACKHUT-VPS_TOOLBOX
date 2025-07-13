@@ -159,7 +159,7 @@ clean_system() {
 components_menu() {
   while true; do
     clear
-    echo -e "${YELLOW}====== 组件管理（常用工具一键安装） ======${RESET}"
+    echo -e "${YELLOW}====== 组件管理 ======${RESET}"
     echo -e "${GREEN}1) 安装 curl 下载工具"
     echo "2) 安装 wget 下载工具"
     echo "3) 安装 sudo 超级管理"
