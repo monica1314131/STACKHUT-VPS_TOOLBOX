@@ -468,10 +468,18 @@ change_ssh_port() {
 
 optimize_dns() {
   echo "正在优化 DNS 设置..."
-  echo "nameserver 8.8.8.8" > /etc/resolv.conf
-  echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-  echo "DNS 已优化"
+
+  cat > /etc/resolv.conf <<EOF
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+nameserver 2606:4700:4700::1111
+nameserver 2001:4860:4860::8888
+EOF
+
+  echo "✅ DNS 已设置为："
+  cat /etc/resolv.conf
 }
+
 
 disable_root_create() {
   echo "禁用 ROOT 创建账户功能..."
