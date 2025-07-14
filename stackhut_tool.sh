@@ -392,7 +392,7 @@ system_tools_menu() {
     echo "13. 防火墙高级管理器           14. iptables一键转发"
     echo "15. 修改主机名                 16. 切换系统更新源"
     echo "17. 定时任务管理               18. IP端口开放扫描"
-    echo  "19. 服务器资源限制"
+    echo  "19. 服务器资源限制            20. 系统时区设定"
     echo "------------------------"
     echo -e " ${YELLOW}99.重启服务器${RESET}"
     echo "------------------------"
@@ -420,6 +420,7 @@ system_tools_menu() {
       17) crontab_manager ;;
       18) scan_open_ports ;;
       19) system_limits ;;
+      20) change_timezone ;;
       99) reboot_server ;;
       0) break ;;
       *) echo -e "${RED}❌ 无效选项，请重新输入${RESET}" ;;
@@ -572,6 +573,66 @@ system_limits() {
   ulimit -a
   echo "建议修改 /etc/security/limits.conf 配置文件手动设置更高级限制。"
 }
+
+change_timezone() {
+  while true; do
+    clear
+    echo -e "${GREEN}系统时间信息${RESET}"
+    echo -e "当前系统时区：${YELLOW}$(timedatectl | grep 'Time zone' | awk '{print $3}')${RESET}"
+    echo -e "当前系统时间：${YELLOW}$(date '+%Y-%m-%d %H:%M:%S')${RESET}"
+    echo ""
+    echo "时区切换"
+    echo "------------------------"
+    echo "亚洲："
+    echo "  1. 中国上海时间           2. 中国香港时间"
+    echo "  3. 日本东京时间           4. 韩国首尔时间"
+    echo "  5. 新加坡时间             6. 马来西亚吉隆坡时间"
+    echo "  7. 印尼雅加达时间         8. 澳大利亚悉尼时间"
+    echo ""
+    echo "欧洲："
+    echo "  11. 英国伦敦时间          12. 法国巴黎时间"
+    echo "  13. 德国柏林时间          14. 俄罗斯莫斯科时间"
+    echo "  15. 荷兰阿姆斯特丹时间    16. 意大利罗马时间"
+    echo ""
+    echo "美洲："
+    echo "  21. 美国洛杉矶时间        22. 美国纽约时间"
+    echo "  23. 加拿大时间            24. 墨西哥时间"
+    echo "  25. 巴西圣保罗时间        26. 阿根廷时间"
+    echo ""
+    echo "  0. 返回上一级菜单"
+    echo "------------------------"
+    read -rp "请输入你的选择： " tz_choice
+
+    case "$tz_choice" in
+      1) timedatectl set-timezone Asia/Shanghai ;;
+      2) timedatectl set-timezone Asia/Hong_Kong ;;
+      3) timedatectl set-timezone Asia/Tokyo ;;
+      4) timedatectl set-timezone Asia/Seoul ;;
+      5) timedatectl set-timezone Asia/Singapore ;;
+      6) timedatectl set-timezone Asia/Kuala_Lumpur ;;
+      7) timedatectl set-timezone Asia/Jakarta ;;
+      8) timedatectl set-timezone Australia/Sydney ;;
+      11) timedatectl set-timezone Europe/London ;;
+      12) timedatectl set-timezone Europe/Paris ;;
+      13) timedatectl set-timezone Europe/Berlin ;;
+      14) timedatectl set-timezone Europe/Moscow ;;
+      15) timedatectl set-timezone Europe/Amsterdam ;;
+      16) timedatectl set-timezone Europe/Rome ;;
+      21) timedatectl set-timezone America/Los_Angeles ;;
+      22) timedatectl set-timezone America/New_York ;;
+      23) timedatectl set-timezone Canada/Eastern ;;
+      24) timedatectl set-timezone America/Mexico_City ;;
+      25) timedatectl set-timezone America/Sao_Paulo ;;
+      26) timedatectl set-timezone America/Argentina/Buenos_Aires ;;
+      0) break ;;
+      *) echo -e "${RED}❌ 无效选择，请重新输入${RESET}"; sleep 1 ;;
+    esac
+
+    echo -e "${GREEN}✅ 时区已修改为：$(timedatectl | grep 'Time zone' | awk '{print $3}')${RESET}"
+    sleep 2
+  done
+}
+
 
 reboot_server() {
   echo -e "${YELLOW}⚠️  即将重启服务器，请确认操作！${RESET}"
