@@ -17,7 +17,7 @@ RESET="\033[0m"       #重置颜色
 # ========== 工具函数 ==========
 header() {
   clear
-  echo -e "${GREEN}============================================================="
+  echo -e "${RED}============================================================="
   echo -e "  ${TOOL_NAME} ${VERSION}"
   echo -e "  一个简洁高效的 VPS 一键管理工具，支持 Ubuntu / Debian / CentOS / Alpine 等常见发行版。"
   echo -e "  地址:https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX"
