@@ -22,6 +22,11 @@ wget -N https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX/raw/main/stackhut_
      -Alpine：apk add curl wget
      -Fedora：dnf install -y curl wget
      -CentOS/Rocky/Almalinux/Oracle-linux/Amazon-linux：yum install -y curl wget
+
+## OpenVZ-BBR-PLUS
+
+```wget https://raw.githubusercontent.com/kuoruan/shell-scripts/master/ovz-bbr/ovz-bbr-installer.sh chmod +x ovz-bbr-installer.sh ./ovz-bbr-installer.sh  
+```
      
 ## 项目说明
 
