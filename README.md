@@ -25,7 +25,8 @@ wget -N https://github.com/monica1314131/STACKHUT-VPS_TOOLBOX/raw/main/stackhut_
 
 ## OpenVZ-BBR-PLUS
 
-```wget https://raw.githubusercontent.com/kuoruan/shell-scripts/master/ovz-bbr/ovz-bbr-installer.sh chmod +x ovz-bbr-installer.sh ./ovz-bbr-installer.sh  
+```bash
+wget https://raw.githubusercontent.com/kuoruan/shell-scripts/master/ovz-bbr/ovz-bbr-installer.sh chmod +x ovz-bbr-installer.sh ./ovz-bbr-installer.sh  
 ```
      
 ## 项目说明
