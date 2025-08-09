@@ -39,7 +39,7 @@ while true; do
   echo " 9) 节点搭建▶"
   echo " 10) 测试脚本▶"
   echo " 00) 脚本更新"
-  echo " 88) 退出脚本 ${RESET}"
+  echo " 88) 退出脚本"
   echo "----------------------------------"
   read -rp "请输入选项: " choice
 
