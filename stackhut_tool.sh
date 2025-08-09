@@ -28,7 +28,7 @@ header() {
 while true; do
   header
   echo -e "${GREEN}可用操作：${RESET}"
-  echo -e "${RED}1) 本机信息"
+  echo -e "${YELLOW}1) 本机信息"
   echo " 2) 系统更新"
   echo " 3) 系统清理"
   echo " 4) 组件管理▶"
