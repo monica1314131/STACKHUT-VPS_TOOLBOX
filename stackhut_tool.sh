@@ -24,6 +24,24 @@ header() {
   echo -e "  TG交流群:https://t.me/stackhut2025"
   echo -e "=============================================================${RESET}"
 }
+# ========== 主菜单循环 ==========
+while true; do
+  header
+  echo -e "${GREEN}可用操作：${RESET}"
+  echo -e"{RED} 1) 本机信息"
+  echo " 2) 系统更新"
+  echo " 3) 系统清理"
+  echo " 4) 组件管理▶"
+  echo " 5) BBR管理▶"
+  echo " 6) Docker管理▶"
+  echo " 7) WARP 解锁 (Fscarmen脚本)"
+  echo " 8) 系统工具▶"
+  echo " 9) 节点搭建▶"
+  echo " 10) 测试脚本▶"
+  echo " 00) 脚本更新"
+  echo " 88) 退出脚本"
+  echo "----------------------------------"
+  read -rp "请输入选项: " choice
 
 pause() {
   read -rp "按回车返回菜单..."
@@ -212,26 +230,6 @@ run_fscarmen_warp() {
 placeholder() {
   echo -e "${YELLOW}此功能暂未实现，敬请期待...${RESET}"
 }
-
-
-# ========== 主菜单循环 ==========
-while true; do
-  header
-  echo -e "${GREEN}可用操作：${RESET}"
-  echo " 1) 本机信息"
-  echo " 2) 系统更新"
-  echo " 3) 系统清理"
-  echo " 4) 组件管理▶"
-  echo " 5) BBR管理▶"
-  echo " 6) Docker管理▶"
-  echo " 7) WARP 解锁 (Fscarmen脚本)"
-  echo " 8) 系统工具▶"
-  echo " 9) 节点搭建▶"
-  echo " 10) 测试脚本▶"
-  echo " 00) 脚本更新"
-  echo " 88) 退出脚本"
-  echo "----------------------------------"
-  read -rp "请输入选项: " choice
 
 bbr_menu() {
   while true; do
