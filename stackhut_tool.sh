@@ -27,7 +27,7 @@ header() {
 # ========== 主菜单循环 ==========
 while true; do
   header
-  echo -e"${GREEN}可用操作：${RESET}"
+  echo -e "${GREEN}可用操作：${RESET}"
   echo " 1) 本机信息"
   echo " 2) 系统更新"
   echo " 3) 系统清理"
